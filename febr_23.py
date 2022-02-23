@@ -36,3 +36,10 @@ room_volume = room_width * room_length * room_height
 
 print(f"room square meters {room_square_meters} and room volume is {room_volume}")
 
+########################################################################
+
+user_temperature_C = input("What is your temperature in Celsius? ")
+user_temperature_C = int(user_temperature_C)
+user_temperature_F = 32+user_temperature_C*(9/5)
+print(f"{user_temperature_C} in Celsius is  {user_temperature_F} in Farenheit")
+
