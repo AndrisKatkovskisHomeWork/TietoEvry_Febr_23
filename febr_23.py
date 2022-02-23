@@ -27,9 +27,9 @@ room_length = input("please input Room length ")
 print(f"Room length is{room_length}")
 room_height = input("please input Room height ")
 print(f"Room height is{room_height}")
-room_width = int(room_width)
-room_length = int(room_length)
-room_height = int(room_height)
+room_width = float(room_width)
+room_length = float(room_length)
+room_height = float(room_height)
 
 room_square_meters = room_width * room_length
 room_volume = room_width * room_length * room_height
@@ -39,6 +39,7 @@ print(f"room square meters {room_square_meters} and room volume is {room_volume}
 ########################################################################
 
 user_temperature_C = input("What is your temperature in Celsius? ")
-user_temperature_C = int(user_temperature_C)
+user_temperature_C = float(user_temperature_C)
 user_temperature_F = 32+user_temperature_C*(9/5)
+user_temperature_F = round(user_temperature_F, 2)
 print(f"{user_temperature_C} in Celsius is  {user_temperature_F} in Farenheit")
