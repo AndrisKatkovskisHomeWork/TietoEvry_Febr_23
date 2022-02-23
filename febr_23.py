@@ -1,7 +1,7 @@
 import datetime
 
-currentDateTime = datetime.datetime.now()
-date = currentDateTime.date()
+current_Date_Time = datetime.datetime.now()
+date = current_Date_Time.date()
 year = date.strftime("%Y")
 print(f"Current Year -> {year}")
 year = int(year)
@@ -42,4 +42,3 @@ user_temperature_C = input("What is your temperature in Celsius? ")
 user_temperature_C = int(user_temperature_C)
 user_temperature_F = 32+user_temperature_C*(9/5)
 print(f"{user_temperature_C} in Celsius is  {user_temperature_F} in Farenheit")
-
