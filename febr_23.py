@@ -9,8 +9,7 @@ year = int(year)
 username = input("What is your username? ")
 print(f"Wow that is a nice name {username}")
 
-user_age = input("What is your username? ")
-print(f" {username}, how old are you?")
+user_age = input("What is your age? ")
 print(f"Dear {username} , {user_age} is the best age?")
 
 user_age = int(user_age)
@@ -38,8 +37,6 @@ print(f"room square meters {room_square_meters} and room volume is {room_volume}
 
 ########################################################################
 
-user_temperature_C = input("What is your temperature in Celsius? ")
-user_temperature_C = float(user_temperature_C)
-user_temperature_F = 32+user_temperature_C*(9/5)
-user_temperature_F = round(user_temperature_F, 2)
+user_temperature_C = float(input("What is your temperature in Celsius? "))
+user_temperature_F = round((32+user_temperature_C*(9/5)), 2)
 print(f"{user_temperature_C} in Celsius is  {user_temperature_F} in Farenheit")
