@@ -5,7 +5,9 @@ position_bad = user_text.find("bad")
 
 # print("position_not: ", position_not)
 
-if user_text.find("not") > 0 and user_text.find("bad") > 0:
+if user_text.find("not") > 0 \
+        and user_text.find("bad") > 0 \
+        and position_bad > position_not:
     user_text = f"{user_text[:position_not]}is good{user_text[position_bad+3:]}"
 
 print("user_text: ", user_text)
