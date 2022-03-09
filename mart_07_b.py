@@ -24,6 +24,7 @@ for i in hangman_string:
         asterisks += hidden_letter_shadow
 
 asterisks_compare = asterisks
+letters_used = ""
 
 while lives > 0 and hangman_string != asterisks_compare:
     while True:
@@ -42,8 +43,10 @@ while lives > 0 and hangman_string != asterisks_compare:
             asterisks_compare = asterisks_compare[:index] + entered_letter + asterisks_compare[index + 1:]
 
     if asterisks_compare == asterisks:
-        print("Sorry, there is no such '", entered_letter, "' in the name.")
+        letters_used += entered_letter
         lives -= 1
+        print("Sorry, there is no such '", entered_letter, "' in the name. You already try: ", ''.join(sorted(letters_used)))
+
     else:
         print("Wow! You did some progress!, There is ", item)
         asterisks = asterisks_compare
