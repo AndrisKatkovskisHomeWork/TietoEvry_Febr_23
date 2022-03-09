@@ -2,7 +2,7 @@ lives = 10
 hidden_letter_shadow = "*"
 
 while True:
-    hangman_string = str(input("Please enter text. It is forbidden to write numbers: "))
+    hangman_string = input("Please enter text. It is forbidden to write numbers: ")
     for i in hangman_string:
         if i.isdigit():
             is_clear_from_digits = False
