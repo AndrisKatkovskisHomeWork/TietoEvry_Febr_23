@@ -25,25 +25,32 @@ for i in hangman_string:
 
 asterisks_compare = asterisks
 
-while lives > 0 or asterisks == asterisks_compare:
+while lives > 0 and hangman_string != asterisks_compare:
     while True:
         print("\nYou have ", lives, "lives left.")
         print("You have to find letters hidden under asterisks: ", asterisks_compare)
-        letter_mentioned_by_second_player = input("Please enter letter you want to check: ")
-        if len(letter_mentioned_by_second_player) == 1:
-            letter_mentioned_by_second_player = letter_mentioned_by_second_player.upper()
+        entered_letter = input("Please enter letter you want to check: ")
+        if len(entered_letter) == 1:
+            entered_letter = entered_letter.upper()
             break
         else:
-            print("something WRONG.... Why you enter ", letter_mentioned_by_second_player)
+            print("something WRONG.... Why you enter ", entered_letter)
 
     for index, item in enumerate(hangman_string):
         #        print("lets search letter", letter_mentioned_by_second_player)
-        if asterisks_compare[index] == hidden_letter_shadow and item == letter_mentioned_by_second_player:
-            asterisks_compare = asterisks_compare[:index] + letter_mentioned_by_second_player + asterisks_compare[
-                                                                                                index + 1:]
+        if asterisks_compare[index] == hidden_letter_shadow and item == entered_letter:
+            asterisks_compare = asterisks_compare[:index] + entered_letter + asterisks_compare[index + 1:]
 
     if asterisks_compare == asterisks:
-        print("Sorry, there is no such '", letter_mentioned_by_second_player, "' in the name.")
+        print("Sorry, there is no such '", entered_letter, "' in the name.")
         lives -= 1
     else:
         print("Wow! You did some progress!, There is ", item)
+        asterisks = asterisks_compare
+
+print("Game is over!")
+
+if hangman_string != asterisks_compare:
+    print("You didn't guess the hidden: ", hangman_string)
+else:
+    print("Congratulations! You are the winner!")
