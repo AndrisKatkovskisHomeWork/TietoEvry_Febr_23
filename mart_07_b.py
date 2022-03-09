@@ -49,7 +49,7 @@ while lives > 0 and hangman_string != asterisks_compare:
               ''.join(sorted(set(letters_used))))
 
     else:
-        print("Wow! You did some progress!, There is ", item)
+        print("Wow! You did some progress!, There is ", entered_letter)
         asterisks = asterisks_compare
 
 print("\n\nGame is over!")
