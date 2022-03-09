@@ -31,7 +31,7 @@ while lives > 0 and hangman_string != asterisks_compare:
         print("\nYou have ", lives, "lives left.")
         print("You have to find letters hidden under asterisks: ", asterisks_compare)
         entered_letter = input("Please enter letter you want to check: ")
-        if len(entered_letter) == 1:
+        if len(entered_letter) == 1 and not entered_letter.isdigit():
             entered_letter = entered_letter.upper()
             break
         else:
@@ -45,15 +45,16 @@ while lives > 0 and hangman_string != asterisks_compare:
     if asterisks_compare == asterisks:
         letters_used += entered_letter
         lives -= 1
-        print("Sorry, there is no such '", entered_letter, "' in the name. You already try: ", ''.join(sorted(letters_used)))
+        print("Sorry, there is no such '", entered_letter, "' in the name. You already try: ",
+              ''.join(sorted(set(letters_used))))
 
     else:
         print("Wow! You did some progress!, There is ", item)
         asterisks = asterisks_compare
 
-print("Game is over!")
+print("\n\nGame is over!")
 
 if hangman_string != asterisks_compare:
     print("You didn't guess the hidden: ", hangman_string)
 else:
-    print("Congratulations! You are the winner!")
+    print("Congratulations! You are the winner!", )
