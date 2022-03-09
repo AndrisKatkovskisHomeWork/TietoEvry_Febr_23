@@ -1,4 +1,5 @@
 lives = 10
+hidden_letter_shadow = "*"
 
 while True:
     hangman_string = str(input("Please enter text. It is forbidden to write numbers: "))
@@ -15,40 +16,34 @@ while True:
     else:
         hangman_string = input("You enter number. Please enter text without numbers: ")
 
-asterisks_string = ""
-hidden_letter_shadow = "*"
+asterisks = ""
 for i in hangman_string:
     if i.isspace():
-        asterisks_string += " "
+        asterisks += " "
     else:
-        asterisks_string += hidden_letter_shadow
+        asterisks += hidden_letter_shadow
 
-print("So... You have to find letters hidden under asterisks: ", asterisks_string)
-asterisks_string_after_change = ""
+asterisks_compare = asterisks
 
-while lives > 0:
+while lives > 0 or asterisks == asterisks_compare:
     while True:
         print("\nYou have ", lives, "lives left.")
+        print("You have to find letters hidden under asterisks: ", asterisks_compare)
         letter_mentioned_by_second_player = input("Please enter letter you want to check: ")
         if len(letter_mentioned_by_second_player) == 1:
             letter_mentioned_by_second_player = letter_mentioned_by_second_player.upper()
-            print("Let's check if name has letter: ", letter_mentioned_by_second_player)
             break
         else:
             print("something WRONG.... Why you enter ", letter_mentioned_by_second_player)
 
-    for s in hangman_string:
-        print("lets search letter", letter_mentioned_by_second_player)
-        if s == letter_mentioned_by_second_player:
-            print("TRUEEEEEEEEEEEEEEEEEE !!! There is ", s)
-            asterisks_string_after_change += s
-        elif s.isspace():
-            asterisks_string_after_change += " "
-        else:
-            asterisks_string_after_change += hidden_letter_shadow
+    for index, item in enumerate(hangman_string):
+        #        print("lets search letter", letter_mentioned_by_second_player)
+        if asterisks_compare[index] == hidden_letter_shadow and item == letter_mentioned_by_second_player:
+            asterisks_compare = asterisks_compare[:index] + letter_mentioned_by_second_player + asterisks_compare[
+                                                                                                index + 1:]
 
-    if asterisks_string_after_change == asterisks_string:
+    if asterisks_compare == asterisks:
+        print("Sorry, there is no such '", letter_mentioned_by_second_player, "' in the name.")
         lives -= 1
-        print("Sorry, there is no such, ", letter_mentioned_by_second_player, "in the name.")
     else:
-        print("You have some progress. There are now fewer closed words: ", asterisks_string_after_change)
+        print("Wow! You did some progress!, There is ", item)
