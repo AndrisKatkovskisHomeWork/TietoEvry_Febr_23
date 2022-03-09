@@ -43,6 +43,10 @@ while lives > 0 and hangman_string != asterisks_compare:
             asterisks_compare = asterisks_compare[:index] + entered_letter + asterisks_compare[index + 1:]
 
     if asterisks_compare == asterisks:
+        for ch in letters_used:
+            if ch == entered_letter:
+                lives += 1
+                break
         letters_used += entered_letter
         lives -= 1
         print("Sorry, there is no such '", entered_letter, "' in the name. You already try: ",
@@ -57,4 +61,4 @@ print("\n\nGame is over!")
 if hangman_string != asterisks_compare:
     print("You didn't guess the hidden: ", hangman_string)
 else:
-    print("Congratulations! You are the winner!", )
+    print("Congratulations! You are the winner with", lives, "lives left!")
