@@ -3,8 +3,8 @@ hidden_letter_shadow = "*"
 
 while True:
     hangman_string = input("Please enter text. It is forbidden to write numbers: ")
-    for i in hangman_string:
-        if i.isdigit():
+    for ch in hangman_string:
+        if ch.isdigit():
             is_clear_from_digits = False
             break
         else:
@@ -17,8 +17,8 @@ while True:
         hangman_string = input("You enter number. Please enter text without numbers: ")
 
 asterisks = ""
-for i in hangman_string:
-    if i.isspace():
+for ch in hangman_string:
+    if ch.isspace():
         asterisks += " "
     else:
         asterisks += hidden_letter_shadow
@@ -42,15 +42,16 @@ while lives > 0 and hangman_string != asterisks_compare:
         if asterisks_compare[index] == hidden_letter_shadow and item == entered_letter:
             asterisks_compare = asterisks_compare[:index] + entered_letter + asterisks_compare[index + 1:]
 
+# If the user enters an incorrect letter repeatedly, no life is removed.
     if asterisks_compare == asterisks:
+        lives -= 1
         for ch in letters_used:
             if ch == entered_letter:
                 lives += 1
                 break
         letters_used += entered_letter
-        lives -= 1
         print("Sorry, there is no such '", entered_letter, "' in the name. You already try: ",
-              ''.join(sorted(set(letters_used))))
+              '  '.join(sorted(set(letters_used))))
 
     else:
         print("Wow! You did some progress!, There is ", entered_letter)
@@ -61,4 +62,5 @@ print("\n\nGame is over!")
 if hangman_string != asterisks_compare:
     print("You didn't guess the hidden: ", hangman_string)
 else:
-    print("Congratulations! You are the winner with", lives, "lives left!")
+    print("Congratulations! And ", lives, "lives left!")
+    print("You have oppened all asterix: ", hangman_string)
