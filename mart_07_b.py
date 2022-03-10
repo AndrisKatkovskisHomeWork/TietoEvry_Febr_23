@@ -31,7 +31,7 @@ while lives > 0 and hangman_string != asterisks_compare:
         print("\nYou have ", lives, "lives left.")
         print("You have to find letters hidden under asterisks: ", asterisks_compare)
         entered_letter = input("Please enter letter you want to check: ")
-        if len(entered_letter) == 1 and not entered_letter.isdigit():
+        if len(entered_letter) == 1 and entered_letter.isalpha():
             entered_letter = entered_letter.upper()
             break
         else:
@@ -42,20 +42,18 @@ while lives > 0 and hangman_string != asterisks_compare:
         if asterisks_compare[index] == hidden_letter_shadow and item == entered_letter:
             asterisks_compare = asterisks_compare[:index] + entered_letter + asterisks_compare[index + 1:]
 
-# If the user enters an incorrect letter repeatedly, no life is removed.
     if asterisks_compare == asterisks:
         lives -= 1
-        for ch in letters_used:
-            if ch == entered_letter:
-                lives += 1
-                break
-        letters_used += entered_letter
-        print("Sorry, there is no such '", entered_letter, "' in the name. You already try: ",
-              '  '.join(sorted(set(letters_used))))
-
     else:
-        print("Wow! You did some progress!, There is ", entered_letter)
+        print("Wow! You did some progress!, There is '", entered_letter, "'")
         asterisks = asterisks_compare
+
+    for ch in letters_used:  # If the user enters an incorrect letter repeatedly, no life is removed.
+        if ch == entered_letter:
+            lives += 1
+            break
+    letters_used += entered_letter
+    print("Sorry, letter '", entered_letter, "' was not found. You already try: ", '  '.join(sorted(set(letters_used))))
 
 print("\n\nGame is over!")
 
@@ -63,4 +61,4 @@ if hangman_string != asterisks_compare:
     print("You didn't guess the hidden: ", hangman_string)
 else:
     print("Congratulations! And ", lives, "lives left!")
-    print("You have oppened all asterix: ", hangman_string)
+    print("You have opened all asterix: ", hangman_string)
