@@ -1,20 +1,32 @@
+import random
+from latvian_name_days_library import word_list
+
 lives = 10
-hidden_letter_shadow = "*"
+hidden_letter_shadow = '❤'
+life_emoji = '💟'
+remaining_lives_in_one_line = ""
+for s in range(lives):
+    remaining_lives_in_one_line += life_emoji
+print("This is your life line", remaining_lives_in_one_line)
 
 while True:
-    hangman_string = input("Please enter text. It is forbidden to write numbers: ")
+    hangman_string = input("To select word at random, please enter 'r'. Or enter  name to be mentioned: ")
     for ch in hangman_string:
         if ch.isdigit():
             is_clear_from_digits = False
             break
         else:
             is_clear_from_digits = True
-    if is_clear_from_digits:
-        print("\n\n\n\n\n\n\n Game can begin!")
-        hangman_string = hangman_string.upper()
+    if hangman_string == 'R' or hangman_string == 'r':
+        hangman_string = random.choice(word_list)
+        break
+    elif is_clear_from_digits:
         break
     else:
-        hangman_string = input("You enter number. Please enter text without numbers: ")
+        print("Name you entered contains number. Please do not use number.")
+
+print("\n\n\n\n\n\n\n Game can begin!")
+hangman_string = hangman_string.upper()
 
 asterisks = ""
 for ch in hangman_string:
@@ -28,7 +40,7 @@ letters_used = ""
 
 while lives > 0 and hangman_string != asterisks_compare:
     while True:
-        print("\nYou have ", lives, "lives left.")
+        print("\nYou have ", lives, "lives left:", remaining_lives_in_one_line[:lives])
         print("You have to find letters hidden under asterisks: ", asterisks_compare)
         entered_letter = input("Please enter letter you want to check: ")
         if len(entered_letter) == 1 and entered_letter.isalpha():
@@ -60,5 +72,5 @@ print("\n\nGame is over!")
 if hangman_string != asterisks_compare:
     print("You didn't guess the hidden: ", hangman_string)
 else:
-    print("Congratulations! And ", lives, "lives left!")
+    print("Congratulations! And ", lives, "lives left!:", remaining_lives_in_one_line[:lives])
     print("You have opened all asterix: ", hangman_string)
